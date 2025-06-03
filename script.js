@@ -35,27 +35,61 @@ function criarCoracao() {
 setInterval(criarCoracao, 300);
 
 // Texto aparecendo no scroll
-const texto = document.querySelector('.texto');
+const textoContainer = document.querySelector('.texto');
 
 window.addEventListener('scroll', () => {
-    const textoTop = texto.getBoundingClientRect().top;
+    const textoTop = textoContainer.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
 
     if (textoTop < windowHeight - 100) {
-        texto.classList.add('show');
+        textoContainer.classList.add('show');
     }
 });
 
-function typeWriter(elemento, velocidade = 100) {
-    const textoArray = elemento.innerHTML.split('');
-    elemento.innerHTML = '';
-    textoArray.forEach((letra, i) => {
-        setTimeout(() => {
-            elemento.innerHTML += letra;
-        }, velocidade * i);
-    });
+// Efeito máquina de escrever
+// Efeito máquina de escrever (versão otimizada)
+function typeWriter(elemento, velocidade = 30) {
+    const textoOriginal = elemento.innerHTML;
+    elemento.textContent = ''; // Limpa sem afetar atributos
+    
+    let i = 0;
+    let dentroDeTag = false;
+    let tagBuffer = '';
+
+    function escrever() {
+        if (i < textoOriginal.length) {
+            const char = textoOriginal[i];
+
+            if (char === '<') {
+                dentroDeTag = true;
+                tagBuffer = char;
+            } 
+            else if (char === '>' && dentroDeTag) {
+                tagBuffer += char;
+                if (tagBuffer.match(/^<(\w+)(.*?)>$/)) {
+                    elemento.innerHTML += tagBuffer;
+                }
+                dentroDeTag = false;
+                tagBuffer = '';
+            } 
+            else if (dentroDeTag) {
+                tagBuffer += char;
+            }
+            else {
+                elemento.innerHTML += char;
+            }
+
+            i++;
+            setTimeout(escrever, velocidade);
+        }
+    }
+
+    escrever();
 }
 
-texto = document.getElementById('typewriter-text');
-typeWriter(texto, 90); // 80 é a velocidade em ms (pode ajustar)
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    const texto = document.getElementById('typewriter-text');
+    typeWriter(texto, 1); // Delay ajustado para 30ms
+});
 
