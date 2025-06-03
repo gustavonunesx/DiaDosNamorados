@@ -93,3 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
     typeWriter(texto, 1); // Delay ajustado para 30ms
 });
 
+
+document.querySelector('.scroll-down').addEventListener('click', function() {
+  document.querySelector('.carrossel').scrollIntoView({ 
+    behavior: 'smooth' 
+  });
+});
+
