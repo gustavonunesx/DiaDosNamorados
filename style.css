@@ -172,6 +172,40 @@ body .subtitulo-romantico {
     
 }
 
+.eu-te-amo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 50px;
+    display: flex;
+    margin-left: 30px;
+    color: #ff66c4;
+    text-shadow: 0 0 10px rgba(255, 102, 196, 0.5);
+    display: inline-block;
+   
+}
+
+.escondido {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.eu-te-amo.visivel {
+  visibility: visible;
+  opacity: 1;
+  animation: aparecerDoAmor 1s ease forwards;
+}
+
+@keyframes aparecerDoAmor {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .norican {
     font-family: 'Norican', cursive !important;
     color: #ff66c4 !important;

@@ -90,7 +90,7 @@ function typeWriter(elemento, velocidade = 30) {
 // Inicialização
 document.addEventListener('DOMContentLoaded', function() {
     const texto = document.getElementById('typewriter-text');
-    typeWriter(texto, 1); // Delay ajustado para 30ms
+    typeWriter(texto, 1); 
 });
 
 
@@ -99,4 +99,10 @@ document.querySelector('.scroll-down').addEventListener('click', function() {
     behavior: 'smooth' 
   });
 });
+
+  setTimeout(() => {
+    const el = document.getElementById('eu-te-amo');
+    el.classList.remove('escondido');
+    el.classList.add('visivel');
+  }, 5000); // 10 segundos
 
