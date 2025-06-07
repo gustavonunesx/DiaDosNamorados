@@ -154,17 +154,65 @@ body .subtitulo-romantico {
 
 /* Carrossel */
 .carrossel {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 20px;
-    border: 4px solid #ff69b4;
-    margin-bottom: 20px;
-    position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 4px solid #ff69b4;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .slides {
-    display: flex;
-    animation: slide 16s infinite;
+  display: flex;
+  width: 800%; /* 8 imagens → 8 * 100% */
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100vw; /* Cada imagem ocupa toda a largura da viewport */
+  height: auto;
+  flex-shrink: 0; /* Evita que as imagens encolham */
+  object-fit: cover;
+}
+
+/* Botões de navegação */
+.seta {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+.seta:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.seta.esquerda {
+  left: 10px;
+}
+
+.seta.direita {
+  right: 10px;
+}
+
+/* Animação do carrossel */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    12.5% { transform: translateX(-100%); }
+    25% { transform: translateX(-200%); }
+    37.5% { transform: translateX(-300%); }
+    50% { transform: translateX(-400%); }
+    62.5% { transform: translateX(-500%); }
+    75% { transform: translateX(-600%); }
+    87.5% { transform: translateX(-700%); }
+    100% { transform: translateX(0); }
 }
 
 #typewriter-text{
@@ -175,12 +223,12 @@ body .subtitulo-romantico {
 .eu-te-amo {
     font-family: 'Great Vibes', cursive;
     font-size: 50px;
-    display: flex;
-    margin-left: 30px;
     color: #ff66c4;
     text-shadow: 0 0 10px rgba(255, 102, 196, 0.5);
-    display: inline-block;
-   
+    display: block;
+    text-align: center; /* Centraliza horizontalmente */
+    width: 100%;
+    margin: 0 auto; /* Remove o margin-left fixo */
 }
 
 .escondido {
@@ -211,26 +259,7 @@ body .subtitulo-romantico {
     color: #ff66c4 !important;
 }
 
-.slides img {
-    width: 90vw;
-    height: auto;
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    border-radius: 20px;
-}
 
-/* Animação do carrossel */
-@keyframes slide {
-    0% { transform: translateX(0); }
-    12.5% { transform: translateX(-100%); }
-    25% { transform: translateX(-200%); }
-    37.5% { transform: translateX(-300%); }
-    50% { transform: translateX(-400%); }
-    62.5% { transform: translateX(-500%); }
-    75% { transform: translateX(-600%); }
-    87.5% { transform: translateX(-700%); }
-    100% { transform: translateX(0); }
-}
 
 /* Cronômetro */
 .cronometro {

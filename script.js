@@ -106,3 +106,78 @@ document.querySelector('.scroll-down').addEventListener('click', function() {
     el.classList.add('visivel');
   }, 5000); // 10 segundos
 
+
+window.addEventListener('DOMContentLoaded', () => {
+  let currentIndex = 0;
+  const slides = document.querySelector('.slides');
+  const totalSlides = document.querySelectorAll('.slides img').length;
+
+  // Troca automática a cada 3 segundos
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  }, 3000);
+
+  function updateSlide() {
+    slides.style.transform = `translateX(-${currentIndex * 100}vw)`;
+  }
+
+  // Botões de navegação manual
+  document.getElementById('avancar').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  });
+
+  document.getElementById('voltar').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  });
+});
+
+
+
+
+
+
+
+// Reinicia o timer ao clicar nas setas
+function reiniciarIntervalo() {
+  clearInterval(intervalo);
+  intervalo = setInterval(proximoSlide, 3000);
+}
+
+// Carrossel automático
+let currentIndex = 0;
+slides = document.querySelector('.slides');
+totalSlides = document.querySelectorAll('.slides img').length;
+
+function showSlide(index) {
+    slides.style.transform = `translateX(-${index * 100}vw)`;
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+}
+
+// Muda a imagem a cada 3 segundos
+setInterval(nextSlide, 3000);
+
+// Botões de navegação manual
+document.getElementById('avancar').addEventListener('click', () => {
+    nextSlide();
+});
+
+document.getElementById('voltar').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+});
+
+let interval = setInterval(nextSlide, 3000);
+
+slides.addEventListener('mouseenter', () => clearInterval(interval));
+slides.addEventListener('mouseleave', () => {
+    interval = setInterval(nextSlide, 3000);
+});
+
+
