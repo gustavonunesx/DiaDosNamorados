@@ -171,6 +171,7 @@ body .subtitulo-romantico {
 .slides img {
   width: 100vw; /* Cada imagem ocupa toda a largura da viewport */
   height: auto;
+  max-height: 70vh; /* Diminui a altura, mas respeita a tela */
   flex-shrink: 0; /* Evita que as imagens encolham */
   object-fit: cover;
 }
