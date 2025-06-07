@@ -259,6 +259,37 @@ body .subtitulo-romantico {
     color: #ff66c4 !important;
 }
 
+#voltar,
+#avancar {
+  background: none;
+  border: none;
+  color: white; /* ou a mesma cor do .scroll-down */
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+#voltar:hover,
+#avancar:hover {
+  opacity: 1;
+}
+
+#voltar {
+  left: 10px;
+}
+
+#avancar {
+  right: 10px;
+}
+
 
 
 /* Cronômetro */
