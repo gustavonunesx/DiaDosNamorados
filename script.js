@@ -45,7 +45,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Efeito máquina de escrever
-function typeWriter(elemento, velocidade = 30) {
+function typeWriter(elemento, velocidade = 30, aoFinal = null) {
     const textoOriginal = elemento.innerHTML;
     elemento.textContent = '';
 
@@ -73,6 +73,8 @@ function typeWriter(elemento, velocidade = 30) {
 
             i++;
             setTimeout(escrever, velocidade);
+        } else {
+            if (aoFinal) aoFinal(); // callback depois que terminar
         }
     }
 
@@ -82,14 +84,16 @@ function typeWriter(elemento, velocidade = 30) {
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     const texto = document.getElementById('typewriter-text');
-    if (texto) typeWriter(texto, 1);
-
     const euTeAmo = document.getElementById('eu-te-amo');
-    if (euTeAmo) {
-        setTimeout(() => {
-            euTeAmo.classList.remove('escondido');
-            euTeAmo.classList.add('visivel');
-        }, 5000);
+
+    // Quando o texto terminar de ser digitado, mostrar "eu te amo"
+    if (texto) {
+        typeWriter(texto, 40, () => {
+            if (euTeAmo) {
+                euTeAmo.classList.remove('escondido');
+                euTeAmo.classList.add('visivel');
+            }
+        });
     }
 
     // Scroll suave
